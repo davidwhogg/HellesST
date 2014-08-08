@@ -1,4 +1,4 @@
-# hellesst
+# HellesST
 
 Bavarian beer + LSST = better LSST
 
