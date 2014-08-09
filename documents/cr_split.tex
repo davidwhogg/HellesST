@@ -9,6 +9,8 @@
 
 \begin{document}
 
+\section{Introduction}
+
 The default plan of the \LSST\ project is to split each 30-s exposure into two
 15-s sub-exposures, primarily to permit identification of cosmic rays (CR).
 It now appears that the CR justification is weaker, and other considerations
@@ -58,7 +60,7 @@ In practice, this may also be up for discussion, but that is beyond our current
 scope.
 
 With these ``rules of the game,'' the only parameter we will consider varying in
-this \documentname is the \emph{split time} $t_s$, or the duration of the
+this \documentname\ is the \emph{split time} $t_s$, or the duration of the
 shorter of the two exposures into which the 30-s exposure is split.
 The split time $t_s$ can be varied in the range $0\leq t_s<15$~s.
 The value $t_s=0$ has a special character, because it permits a slightly longer
@@ -69,9 +71,46 @@ The open questions are:
 \begin{hogglist}
   \hoggitem~What information is gained or lost about saturated (bright) sources
   as the split time $t_s$ is varied?
-  \hoggitem~How does the capture of variations in the atmosphere improve or hurt\ldots
-  \hoggitem~How do the accuracy of measurements of moving objects\ldots
-  \hoggitem~Is there any important stellar variablity that\ldots
+  \hoggitem~How does the capture of variations in the atmosphere improve or hurt\ldots HOGG!
+  \hoggitem~How do the accuracy of measurements of moving objects\ldots HOGG!
+  \hoggitem~Is there any important stellar variablity that\ldots HOGG!
 \end{hogglist}
+
+Just to whet the appetite, let's think a bit about the simplest problem:
+How does the split time affect our ability to measure the positions
+and brightnesses of non-moving, non-varying stars?
+At first it might seem that it can't possibly matter.
+But the fact that the WCS and PSF vary between the exposures suggests
+that the two exposures taken together might provide more information
+than their simple sum or average or co-addition.
+For example, consider the point that a very short exposure might often
+or occasionally deliver a very spiky or compact PSF.
+This exposure will have low signal-to-noise but might deliver high
+angular resolution for brighter sources.
+
+We are going to answer the questions we care about in the context of
+the \LSST\ system, using the \LSST\ image simulation infrastructure.
+This helps with keeping the problems well-posed.
+That said, in the end, the results we get will depend only on a few fundamental
+controlling parameters, such as the read noise, the sky brightness, the PSF
+variability (in appropriate units), and the angular densities of certain kinds
+of sources.
+For this reason, all of the machinery used in this study is generalizable to
+other hardware and other scientific goals.
+We will try to bring out the relevant scalings in each part of what follows.
+That is, we will try to describe (at least roughly) how the results would adjust
+in response to changes in system properties.
+
+\section{System properties and simulations}
+
+\section{Saturation and bright sources}
+
+\section{Static, non-variable stars}
+
+\section{Fast-moving objects}
+
+\section{Variable stars}
+
+\section{Discussion}
 
 \end{document}
