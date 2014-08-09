@@ -1,7 +1,77 @@
 \documentclass[12pt]{article}
 
+\newcommand{\documentname}{\textsl{note}}
+\newcommand{\project}[1]{\textsl{#1}}
+\newcommand{\LSST}{\project{LSST}}
+\newcounter{hogg}
+\newenvironment{hogglist}{\setcounter{hogg}{0}}{}
+\newcommand{\hoggitem}{\refstepcounter{hogg}\textsl{(\thehogg)}}
+
 \begin{document}
 
-Hello World!
+The default plan of the \LSST\ project is to split each 30-s exposure into two
+15-s sub-exposures, primarily to permit identification of cosmic rays (CR).
+It now appears that the CR justification is weaker, and other considerations
+might dominate.
+Here we ask the following ill-posed question:
+Given an overall exposure constraint of 30~s (plus the time to take two detector
+reads), what is the best split into sub-exposures?
+If there is
+\begin{hogglist}
+  \hoggitem~finite read noise,
+  \hoggitem~no concerns about detector saturation,
+  \hoggitem~no issue with identifying CRs,
+  \hoggitem~no variation in the sky foreground intensity, atmospheric
+  transparency, astrometric distortions (WCS), or point-spread function (PSF),
+  and
+  \hoggitem~no variation in the fluxes or positions of sources of interest,
+\end{hogglist}
+then the answer is simple:
+Take a single exposure for 30~s, plus the extra exposure time you gain by not
+performing the second detector read.
+This will deliver maximum signal-to-noise on the (by assumption) completely
+fixed scene.
+
+While there is definitely finite read noise in the \LSST\ camera, the other
+conditions---no issues with saturation or CR identification and no variation in
+the atmosphere or sources---do not hold in general.
+In particular, the PSF is expected to vary rapidly on short time-scales.
+As we consider the issues of understanding saturated sources, removing CRs,
+accounting for atmospheric variability, and measuring variable or moving
+sources, we are likely to find that different exposure-time choices affect
+different goals differently.
+This is what makes the general question ill-posed; we seek some well-posed
+questions that are related, or answer the ill-posed question in useful limiting
+cases.
+
+For the purposes of this \documentname, we will presume that the
+\LSST\ hardware, filters, and site are all now fixed in design; this makes it
+unproductive to consider non-\LSST\ levels or types of read noise, saturation
+effects, character of CR events, and mean and variability in atmospheric
+properties.
+We will also presume that there is a very good, very realistic \LSST\ data
+simulator, that can simulate all the effects of the electronics, optics,
+atmosphere, radiation environment, and astronomical sources.
+Finally, we will consider the 30-s overall exposure-time window to be a fixed
+requirement.
+In practice, this may also be up for discussion, but that is beyond our current
+scope.
+
+With these ``rules of the game,'' the only parameter we will consider varying in
+this \documentname is the \emph{split time} $t_s$, or the duration of the
+shorter of the two exposures into which the 30-s exposure is split.
+The split time $t_s$ can be varied in the range $0\leq t_s<15$~s.
+The value $t_s=0$ has a special character, because it permits a slightly longer
+total exposure time (as it saves the project a full read) and it reduces the
+data rate by a factor of two; in what follows we won't consider these advantages
+to $t_s=0$, but they could be added in to a more complete analysis.
+The open questions are:
+\begin{hogglist}
+  \hoggitem~What information is gained or lost about saturated (bright) sources
+  as the split time $t_s$ is varied?
+  \hoggitem~How does the capture of variations in the atmosphere improve or hurt\ldots
+  \hoggitem~How do the accuracy of measurements of moving objects\ldots
+  \hoggitem~Is there any important stellar variablity that\ldots
+\end{hogglist}
 
 \end{document}
